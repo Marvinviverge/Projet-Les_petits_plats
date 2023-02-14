@@ -11,6 +11,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const { recipes } = await getApi(); // Varible qui attend de recevoir les données des photographes.
         displayData(recipes); // Appel de la fonction displayData avec en paramètre les données reçus.
+        document.getElementById('searchRecipes').addEventListener('keyup', (e) => {
+
+            if (e.target.value.length < 3) {
+                displayData(recipes)
+                return
+            }
+
+            let newRecipes = recipes.filter((recipe) => {
+                let ingredientString = '';
+                recipe.ingredients.map((item) => {
+                    ingredientString += item.ingredient + ' ';
+                })
+
+                if (recipe.name.toLowerCase().match(e.target.value) || recipe.description.toLowerCase().match(e.target.value) || ingredientString.toLowerCase().match(e.target.value)) {
+                    return recipe
+                }
+            })
+
+            displayData(newRecipes)
+        })
     };
 
     main(); // Appel de la fonction main.

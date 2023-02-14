@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const { recipes } = await getApi(); // Varible qui attend de recevoir les données des photographes.
         displayData(recipes); // Appel de la fonction displayData avec en paramètre les données reçus.
+
+        // Algo2 à mettre ici.
     };
 
     main(); // Appel de la fonction main.

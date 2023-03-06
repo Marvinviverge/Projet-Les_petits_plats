@@ -1,3 +1,92 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+/* SEARCH BAR SECTION*/
+#searchRecipes {
+    padding-left: 30px;
+}
+
+.fa-magnifying-glass {
+    height: 32px;
+    width: 32px;
+    padding-right: 10px;
+}
+
+#searchRecipes::placeholder {
+    color: black;
+    opacity: 0.25;
+    font-size: 18px;
+}
+
+#searchRecipes,
+.searchIcon {
+    background-color: #E7E7E7 !important;
+    border: none;
+    height: 70px;
+    margin-top: 30px;
+}
+
+#searchRecipes:focus {
+    box-shadow: none;
+}
+
+/* TAG SECTION */
+#tag-container {
+    margin-top: 25px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#tag-container-ingredients {
+    display: flex;
+}
+
+#tag-container-appliances {
+    display: flex;
+}
+
+#tag-container-ustensils {
+    display: flex;
+}
+
+.tag {
+    margin-right: 10px;
+    border: none !important;
+    display: flex !important;
+    align-items: center;
+    gap: 15px;
+}
+
+.tag:hover {
+    background-color: inherit;
+}
+
+.fa-circle-xmark {
+    width: 20px;
+    height: 20px;
+}
+
+.fa-circle-xmark:hover {
+    color: red;
+}
+
+.tag-ingredients {
+    background-color: #3282F7 !important;
+}
+
+.tag-ustensils {
+    background-color: #ED6454 !important;
+}
+
+.tag-appliances {
+    background-color: #68D9A4 !important;
+}
+
+/* CARD SECTION */
+
 .card-background {
     height: 50%;
     background-color: #C7BEBE;
@@ -12,31 +101,225 @@
     background-color: #E7E7E7;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    overflow: hidden !important;
+    padding: 10px 15px 5px 15px !important;
+
 }
 
 .titleCard {
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
+    font-weight: 400 !important;
+}
+
+.timeCard {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .descriptionCard {
     display: flex;
+    gap: 10px;
     font-size: 12px;
-
+    overflow: hidden !important;
 }
 
 .descriptionCard li {
     list-style: none;
+    font-weight: 700;
+    text-transform: capitalize;
 }
 
 .descriptionCard ul,
 .descriptionCard p {
     width: 50%;
     padding: inherit;
-    font-family: Roboto;
+    overflow: scroll;
+    scrollbar-width: thin;
+}
+
+p {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .margin {
     margin-bottom: 20px;
+}
+
+/*Section des dropdown*/
+
+.dropdown-container {
+    width: 15% !important;
+    position: relative;
+}
+
+.dropdown-container-opened {
+    width: 50% !important;
+    transition: width 250ms ease-out;
+}
+
+.dropdown-container-ingredients .icon {
+    background-color: #3282F7 !important;
+}
+
+.dropdown-container-appliances .icon {
+    background-color: #68D9A4 !important;
+}
+
+.dropdown-container-ustensils .icon {
+    background-color: #ED6454 !important;
+}
+
+.dropdown-container-opened .icon,
+.input-container .icon {
+    border: none;
+    border-radius: 5px !important;
+    width: 50px;
+    color: white;
+    font-size: 18px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+
+}
+
+#search-dropdown {
+    display: flex;
+    height: 70px;
+    gap: 20px;
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+
+.not-active {
+    display: none !important;
+}
+
+#ingredients-button,
+#appliance-button,
+#ustensils-button {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#dropdownIngredients,
+#dropdownAppliance,
+#dropdownUstensils {
+    width: 100%;
+    max-height: 500px;
+    inset: inherit !important;
+    margin: 40px 0 0 0 !important;
+    transform: inherit !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: auto;
+}
+
+.dropdown-input {
+    border-radius: 5px !important;
+    color: white !important;
+}
+
+.dropdown-input:focus {
+    box-shadow: inherit !important;
+}
+
+.dropdown-input::placeholder {
+    color: white !important;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.dropdown-container-opened .dropdown-input::placeholder {
+    opacity: 0.5;
+}
+
+#searchAppliance {
+    background-color: #68D9A4;
+    border: none;
+}
+
+#searchIngredients {
+    background-color: #3282F7;
+    border: none;
+}
+
+#searchUstensils {
+    background-color: #ED6454;
+    border: none;
+}
+
+.tag {
+    text-transform: capitalize;
+}
+
+.isRotate {
+    rotate: 180deg;
+}
+
+fa-chevron-down {
+    transition: rotate 250ms ease-out;
+}
+
+#ingredients-button,
+#dropdownIngredients {
+    background-color: #3282F7;
+    border: none;
+    color: white;
+}
+
+#dropdownIngredients li a:hover {
+    background-color: #3282F7 !important;
+    filter: brightness(90%);
+}
+
+#appliance-button,
+#dropdownAppliance {
+    background-color: #68D9A4;
+    border: none;
+    color: white;
+}
+
+#dropdownAppliance li a:hover {
+    background-color: #68D9A4 !important;
+    filter: brightness(90%);
+}
+
+#ustensils-button,
+#dropdownUstensils {
+    background-color: #ED6454;
+    border: none;
+    color: white;
+}
+
+#dropdownUstensils li a:hover {
+    background-color: #ED6454 !important;
+    filter: brightness(90%);
+}
+
+li a {
+    color: white !important;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: inherit !important;
+}
+
+.input-container {
+    display: flex;
+    width: 100%;
 }

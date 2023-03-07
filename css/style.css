@@ -233,6 +233,7 @@ p {
 .dropdown-input {
     border-radius: 5px !important;
     color: white !important;
+    cursor: pointer;
 }
 
 .dropdown-input:focus {

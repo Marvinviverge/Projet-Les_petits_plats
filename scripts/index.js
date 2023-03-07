@@ -352,9 +352,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         break
                 }
 
-                newRecipes = [];
+                let filteredRecipes = [];
 
-                for (const recipe of recipes) {
+                for (const recipe of newRecipes) {
                     let isMatch = false;
 
                     switch (focus) {
@@ -398,15 +398,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     if (isMatch) {
-                        newRecipes.push(recipe);
+                        filteredRecipes.push(recipe);
                     }
                 }
+
+                newRecipes = filteredRecipes;
+
 
                 displayAll(recipes)
 
                 tagBtn.addEventListener('click', () => {
 
-                    allTags = allTags.filter((tag) => tag.value != tagBtn.textContent)
+                    let updatedAllTags = [];
+                    for (let tag of allTags) {
+                        if (tag.value !== tagBtn.textContent) {
+                            updatedAllTags.push(tag);
+                        }
+                    }
+                    allTags = updatedAllTags;
 
                     if (searchRecipes.value.length < 3) {
                         tagFilterFirst(recipes)

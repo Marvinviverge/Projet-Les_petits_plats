@@ -85,63 +85,61 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function tagFilterFirst(recipes) {
-        newRecipes = []
 
-        for (const recipe of recipes) {
-            let keep = true;
+        newRecipes = recipes.filter((recipe) => {
+            keep = true
 
-            for (const tag of allTags) {
+            allTags.map((tag) => {
                 switch (tag.type) {
                     case 'appliance':
                         if (!recipe.appliance.toLowerCase().match(tag.value.toLowerCase())) {
-                            keep = false;
+                            keep = false
                         }
-                        break;
+                        break
 
                     case 'ingredients':
-                        let ti = [];
-                        for (const u of recipe.ingredients) {
-                            let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase());
+                        let ti = recipe.ingredients.filter((u) => {
+                            let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
-                                ti.push(u);
-                            }
-                        }
+                                return true
+                            } else return false
+                        })
+
                         if (ti.length == 0) {
-                            keep = false;
+                            keep = false
                         }
-                        break;
+                        break
 
                     case 'ustensils':
-                        let tu = [];
-                        for (const u of recipe.ustensils) {
-                            let result = u.toLowerCase().match(tag.value.toLowerCase());
+                        let tu = recipe.ustensils.filter((u) => {
+                            let result = u.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
-                                tu.push(u);
-                            }
-                        }
+                                return true
+                            } else return false
+                        })
+
                         if (tu.length == 0) {
-                            keep = false;
+                            keep = false
                         }
-                        break;
+                        break
                 }
-            }
+            })
 
             if (keep) {
-                newRecipes.push(recipe);
+                return recipe
             }
-        }
+
+        })
 
     }
 
     function tagFilterSecond(recipes) {
-        newRecipes = []
-
-        for (const recipe of recipes) {
+        newRecipes = recipes.filter((recipe) => { // Déclaration variable de nouvelles recettes, dans laquelle on filtre les recettes initiales
             keep = true
 
-            for (const tag of allTags) {
+            allTags.map((tag) => {
                 switch (tag.type) {
                     case 'appliance':
                         if (!recipe.appliance.toLowerCase().match(tag.value.toLowerCase())) {
@@ -150,14 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         break
 
                     case 'ingredients':
-                        let ti = []
-                        for (const u of recipe.ingredients) {
+                        let ti = recipe.ingredients.filter((u) => {
                             let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
-                                ti.push(u)
-                            }
-                        }
+                                return true
+                            } else return false
+                        })
 
                         if (ti.length == 0) {
                             keep = false
@@ -165,36 +162,34 @@ document.addEventListener("DOMContentLoaded", function () {
                         break
 
                     case 'ustensils':
-                        let tu = []
-                        for (const u of recipe.ustensils) {
+                        let tu = recipe.ustensils.filter((u) => {
                             let result = u.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
-                                tu.push(u)
-                            }
-                        }
+                                return true
+                            } else return false
+                        })
 
                         if (tu.length == 0) {
                             keep = false
                         }
                         break
                 }
-            }
+            })
 
             if (keep) {
                 let ingredientString = ''; // On initialise une variable d'une chaîne de caractère vide
-                for (const item of recipe.ingredients) {
-                    // On parcourt les ingrédients d'une recette
+                recipe.ingredients.map((item) => { // On parcourt les ingrédients d'une recette
                     ingredientString += item.ingredient + ' '; // On ajoute à la variable de chaîne de caractère, les ingrédients de chaque recette parcourue
-                }
+                })
 
                 // Vérification du champs saisie pour ne retourner que les recettes qui contiennent la valeur saisie par l'utilisateur
                 if (recipe.name.toLowerCase().match(searchRecipes.value.toLowerCase()) || recipe.description.toLowerCase().match(searchRecipes.value.toLowerCase()) || ingredientString.toLowerCase().match(searchRecipes.value.toLowerCase())) {
-                    newRecipes.push(recipe)
+                    return recipe
                 }
             }
 
-        }
+        })
     }
 
     function displayAll(recipes) {
@@ -204,127 +199,97 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function displayItems() {
-        let dropdownIngredients = document.getElementById('dropdownIngredients')
+        const dropdownIngredients = document.getElementById('dropdownIngredients');
         dropdownIngredients.innerHTML = '';
         let ingredientsList = [];
 
-        let dropdownUstensils = document.getElementById('dropdownUstensils')
-        dropdownUstensils.innerHTML = ''
+        const dropdownUstensils = document.getElementById('dropdownUstensils');
+        dropdownUstensils.innerHTML = '';
         let ustensilsList = [];
 
-        let dropdownAppliance = document.getElementById('dropdownAppliance')
+        const dropdownAppliance = document.getElementById('dropdownAppliance');
         dropdownAppliance.innerHTML = '';
         let applianceList = [];
 
-        let dropdownInput = document.querySelectorAll('.dropdown-input')
+        const dropdownInput = document.querySelectorAll('.dropdown-input');
 
-        for (let i = 0; i < dropdownInput.length; i++) {
-            const input = dropdownInput[i];
-            let getInputId = input.getAttribute('id')
+        dropdownInput.forEach((input) => {
+            const getInputId = input.getAttribute('id');
 
             switch (getInputId) {
                 case 'searchIngredients':
-                    newRecipes.map((item) => { // On parcourt les recettes
-
-                        ingredientsList = [...ingredientsList, ...item.ingredients.map((i) => { // Et on ajoute au tableau ingredientsList, les ingrédients de chaque recette parcourue les uns à la suite des autres. 
-
-                            return i.ingredient.toLowerCase();
-                        })]
-                    })
-
+                    newRecipes.forEach((item) => {
+                        ingredientsList.push(...item.ingredients.map((i) => i.ingredient.toLowerCase()));
+                    });
 
                     // Retrait des doublons du tableau
-                    ingredientsList = ingredientsList.filter((ingredient, index) => {
-                        return ingredientsList.indexOf(ingredient) == index
-                    })
+                    ingredientsList = ingredientsList.filter((ingredient, index) => ingredientsList.indexOf(ingredient) === index);
 
                     // On boucle ensuite sur le tableau pour que chaque ingrédient créé du html
-                    for (let i = 0; i < ingredientsList.length; i++) {
-                        let element = ingredientsList[i];
-                        if (allTags.filter((e) => {
-                            return e.value.toLowerCase() == element.toLowerCase()
-                        }).length == 0) {
+                    ingredientsList.forEach((element) => {
+                        if (!allTags.filter((e) => e.value.toLowerCase() === element.toLowerCase()).length) {
                             dropdownIngredients.insertAdjacentHTML(
-                                "beforeend",
+                                'beforeend',
                                 `
                                 <li><a class="dropdown-item" href="#">${element}</a></li>
                                 `
                             );
                         }
-                    }
-                    displayDropdown(dropdownIngredients)
-                    break
+                    });
+                    displayDropdown(dropdownIngredients);
+                    break;
 
                 case 'searchUstensils':
-                    newRecipes.map((item) => { // On parcourt les recettes
-
-                        ustensilsList = [...ustensilsList, ...item.ustensils.map((u) => {
-                            return u.toLowerCase()
-                        })]
-                    })
+                    newRecipes.forEach((item) => {
+                        ustensilsList.push(...item.ustensils.map((u) => u.toLowerCase()));
+                    });
 
                     // Retrait des doublons du tableau
-                    ustensilsList = ustensilsList.filter((ustensil, index) => {
-                        return ustensilsList.indexOf(ustensil) == index
-                    })
+                    ustensilsList = ustensilsList.filter((ustensil, index) => ustensilsList.indexOf(ustensil) === index);
 
                     // On boucle ensuite sur le tableau pour que chaque ustensile créé du html
-                    for (let i = 0; i < ustensilsList.length; i++) {
-                        let element = ustensilsList[i];
-
-                        if (allTags.filter((e) => {
-                            return e.value.toLowerCase() == element.toLowerCase()
-                        }).length == 0) {
+                    ustensilsList.forEach((element) => {
+                        if (!allTags.filter((e) => e.value.toLowerCase() === element.toLowerCase()).length) {
                             dropdownUstensils.insertAdjacentHTML(
-                                "beforeend",
+                                'beforeend',
                                 `
-                            <li><a class="dropdown-item" href="#">${element}</a></li>
-                            `
+                                <li><a class="dropdown-item" href="#">${element}</a></li>
+                                `
                             );
                         }
-                    }
-                    displayDropdown(dropdownUstensils)
-                    break
+                    });
+                    displayDropdown(dropdownUstensils);
+                    break;
 
                 case 'searchAppliance':
-                    // On parcourt les recettes pour push chaque appareil dans le tableau
-                    newRecipes.map((item) => {
-                        applianceList.push(item.appliance)
-                    })
+                    newRecipes.forEach((item) => {
+                        applianceList.push(item.appliance);
+                    });
 
                     // Retrait des doublons du tableau
-                    applianceList = applianceList.filter((appliance, index) => {
-                        return applianceList.indexOf(appliance) == index
-                    })
+                    applianceList = applianceList.filter((appliance, index) => applianceList.indexOf(appliance) === index);
 
                     // On boucle ensuite sur le tableau pour que chaque appareil créé du html
-                    for (let i = 0; i < applianceList.length; i++) {
-                        let element = applianceList[i];
-                        if (allTags.filter((e) => {
-                            return e.value.toLowerCase() == element.toLowerCase()
-                        }).length == 0) {
-
+                    applianceList.forEach((element) => {
+                        if (!allTags.filter((e) => e.value.toLowerCase() === element.toLowerCase()).length) {
                             dropdownAppliance.insertAdjacentHTML(
-                                "beforeend",
+                                'beforeend',
                                 `
-                        <li><a class="dropdown-item" href="#">${element}</a></li>
-                        `
+                                <li><a class="dropdown-item" href="#">${element}</a></li>
+                                `
                             );
                         }
-                    }
-                    displayDropdown(dropdownAppliance)
-                    break
+                    });
+                    displayDropdown(dropdownAppliance);
+                    break;
             }
-
-        }
+        });
     }
 
     function tagClicked(recipes) {
 
         let item = document.querySelectorAll('.dropdown-item')
-
-        for (let i = 0; i < item.length; i++) {
-            let tag = item[i];
+        item.forEach((tag) => {
             tag.addEventListener('click', (e) => {
                 let focus = e.target.parentNode.parentNode.getAttribute('typeFilter')
                 allTags.push({ type: focus, value: tag.textContent })
@@ -352,70 +317,50 @@ document.addEventListener("DOMContentLoaded", function () {
                         break
                 }
 
-                let filteredRecipes = [];
-
-                for (const recipe of newRecipes) {
-                    let isMatch = false;
-
+                newRecipes = newRecipes.filter((recipe) => {
                     switch (focus) {
                         case 'appliance':
                             if (recipe.appliance.toLowerCase().match(tag.textContent.toLowerCase())) {
-                                isMatch = true;
+                                return true
                             }
-                            break;
+                            break
 
                         case 'ingredients':
-                            let ingredientsMatch = [];
+                            let ti = recipe.ingredients.filter((u) => {
+                                let result = u.ingredient.toLowerCase().match(tag.textContent.toLowerCase())
 
-                            for (const ingredient of recipe.ingredients) {
-                                if (ingredient.ingredient.toLowerCase().match(tag.textContent.toLowerCase())) {
-                                    ingredientsMatch.push(true);
-                                } else {
-                                    ingredientsMatch.push(false);
-                                }
-                            }
+                                if (result && result.length > 0) {
+                                    return true
+                                } else return false
 
-                            if (ingredientsMatch.includes(true)) {
-                                isMatch = true;
+                            })
+
+                            if (ti.length > 0) {
+                                return true
                             }
-                            break;
+                            break
 
                         case 'ustensils':
-                            let ustensilsMatch = [];
+                            let tu = recipe.ustensils.filter((u) => {
+                                let result = u.toLowerCase().match(tag.textContent.toLowerCase())
 
-                            for (const ustensil of recipe.ustensils) {
-                                if (ustensil.toLowerCase().match(tag.textContent.toLowerCase())) {
-                                    ustensilsMatch.push(true);
-                                } else {
-                                    ustensilsMatch.push(false);
-                                }
+                                if (result && result.length > 0) {
+                                    return true
+                                } else return false
+                            })
+
+                            if (tu.length > 0) {
+                                return true
                             }
-
-                            if (ustensilsMatch.includes(true)) {
-                                isMatch = true;
-                            }
-                            break;
+                            break
                     }
-
-                    if (isMatch) {
-                        filteredRecipes.push(recipe);
-                    }
-                }
-
-                newRecipes = filteredRecipes;
-
+                })
 
                 displayAll(recipes)
 
                 tagBtn.addEventListener('click', () => {
 
-                    let updatedAllTags = [];
-                    for (let tag of allTags) {
-                        if (tag.value !== tagBtn.textContent) {
-                            updatedAllTags.push(tag);
-                        }
-                    }
-                    allTags = updatedAllTags;
+                    allTags = allTags.filter((tag) => tag.value != tagBtn.textContent)
 
                     if (searchRecipes.value.length < 3) {
                         tagFilterFirst(recipes)
@@ -430,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 })
             })
-        }
+        })
     }
 
     function getApi() {
@@ -446,7 +391,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayData() {
         const recipesSection = document.getElementById("recipes-container");
         recipesSection.innerHTML = '';
-
         newRecipes.forEach((recipe) => {
             const recipeModel = recipesFactory(recipe); // Appel de la fonction photographerFactory avec en paramètre les informations des photographes.
             const recipeCardDOM = recipeModel.getRecipesCardDOM(); // Appel de la fonction getUser qui va générer les différents photographes

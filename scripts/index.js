@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         newRecipes = []
 
         for (const recipe of recipes) {
-            keep = true
+            let keep = true
 
             for (const tag of allTags) {
                 switch (tag.type) {
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (!recipe.appliance.toLowerCase().match(tag.value.toLowerCase())) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ingredients':
                         let ti = []
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (ti.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ustensils':
                         let tu = []
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (tu.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
                 }
             }
 

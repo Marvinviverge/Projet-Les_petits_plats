@@ -30,6 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
             tagFilterSecond(recipes)
             displayAll(recipes)
 
+            let noRecipes = document.querySelector('#noMatch')
+            if (newRecipes.length == 0) {
+                noRecipes.classList.remove('not-active')
+            } else {
+                noRecipes.classList.add('not-active')
+            }
+
         })
 
     }
@@ -95,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (!recipe.appliance.toLowerCase().match(tag.value.toLowerCase())) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ingredients':
                         let ti = recipe.ingredients.filter((u) => {
@@ -109,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (ti.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ustensils':
                         let tu = recipe.ustensils.filter((u) => {
@@ -123,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (tu.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
                 }
             })
 
@@ -145,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (!recipe.appliance.toLowerCase().match(tag.value.toLowerCase())) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ingredients':
                         let ti = recipe.ingredients.filter((u) => {
@@ -159,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (ti.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
 
                     case 'ustensils':
                         let tu = recipe.ustensils.filter((u) => {
@@ -173,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (tu.length == 0) {
                             keep = false
                         }
-                        break
+                        break;
                 }
             })
 

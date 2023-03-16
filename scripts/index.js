@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function tagFilterFirst(recipes) {
 
         newRecipes = recipes.filter((recipe) => {
-            keep = true
+            let keep = true
 
             allTags.map((tag) => {
                 switch (tag.type) {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function tagFilterSecond(recipes) {
         newRecipes = recipes.filter((recipe) => { // Déclaration variable de nouvelles recettes, dans laquelle on filtre les recettes initiales
-            keep = true
+            let keep = true
 
             allTags.map((tag) => {
                 switch (tag.type) {

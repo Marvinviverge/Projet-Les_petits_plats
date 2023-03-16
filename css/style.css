@@ -324,3 +324,10 @@ li a {
     display: flex;
     width: 100%;
 }
+
+#noMatch p {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px !important;
+    font-weight: 700;
+}

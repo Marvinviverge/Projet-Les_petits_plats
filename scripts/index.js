@@ -30,6 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
             tagFilterSecond(recipes)
             displayAll(recipes)
 
+            let noRecipes = document.querySelector('#noMatch')
+            if (newRecipes.length == 0) {
+                noRecipes.classList.remove('not-active')
+            } else {
+                noRecipes.classList.add('not-active')
+            }
+
         })
 
     }

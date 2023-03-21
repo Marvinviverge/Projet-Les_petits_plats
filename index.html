@@ -42,39 +42,44 @@
             <div class="input-group mb-3 dropdown-container dropdown-container-ingredients">
                 <div class="input-container">
                     <input id="searchIngredients" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Ingredients" placeholder-closed="Ingredients"
-                        placeholder-opened="Rechercher un ingrédient" placeholder="Ingredients">
+                        aria-label="Text input with dropdown button" name="Ingredients"
+                        data-placeholder-closed="Ingredients" data-placeholder-opened="Rechercher un ingrédient"
+                        placeholder="Ingredients">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownIngredients" typeFilter="ingredients" class="dropdown-menu not-active">
+                <ul id="dropdownIngredients" data-typeFilter="ingredients" class="dropdown-menu not-active">
                 </ul>
             </div>
 
             <div class="input-group mb-3 dropdown-container dropdown-container-appliances">
                 <div class="input-container">
                     <input id="searchAppliance" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Appareils" placeholder-closed="Appareils"
-                        placeholder-opened="Rechercher un appareil" placeholder="Appareils">
+                        aria-label="Text input with dropdown button" name="Appareils"
+                        data-placeholder-closed="Appareils" data-placeholder-opened="Rechercher un appareil"
+                        placeholder="Appareils">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownAppliance" typeFilter="appliance" class="dropdown-menu dropdown-menu-end not-active">
+                <ul id="dropdownAppliance" data-typeFilter="appliance"
+                    class="dropdown-menu dropdown-menu-end not-active">
                 </ul>
             </div>
 
             <div class="input-group mb-3 dropdown-container dropdown-container-ustensils">
                 <div class="input-container">
                     <input id="searchUstensils" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Ustensiles" placeholder-closed="Ustensiles"
-                        placeholder-opened="Rechercher un ustensile" placeholder="Ustensiles">
+                        aria-label="Text input with dropdown button" name="Ustensiles"
+                        data-placeholder-closed="Ustensiles" data-placeholder-opened="Rechercher un ustensile"
+                        placeholder="Ustensiles">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownUstensils" typeFilter="ustensils" class="dropdown-menu dropdown-menu-end not-active">
+                <ul id="dropdownUstensils" data-typeFilter="ustensils"
+                    class="dropdown-menu dropdown-menu-end not-active">
                 </ul>
             </div>
         </div>

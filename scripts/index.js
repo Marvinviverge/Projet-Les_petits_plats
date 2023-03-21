@@ -79,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
             })
 
             if (dropdownContainer.getAttribute('class').includes('opened')) {
-                dropdownInput.placeholder = dropdownInput.getAttribute('placeholder-opened');
+                dropdownInput.placeholder = dropdownInput.getAttribute('data-placeholder-opened');
             } else {
-                dropdownInput.placeholder = dropdownInput.getAttribute('placeholder-closed');
+                dropdownInput.placeholder = dropdownInput.getAttribute('data-placeholder-closed');
                 dropdownInput.value = ''
                 dropdownList.map((list) => {
                     list.style.display = 'block'
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let item = document.querySelectorAll('.dropdown-item')
         item.forEach((tag) => {
             tag.addEventListener('click', (e) => {
-                let focus = e.target.parentNode.parentNode.getAttribute('typeFilter')
+                let focus = e.target.parentNode.parentNode.getAttribute('data-typeFilter')
                 allTags.push({ type: focus, value: tag.textContent })
 
                 let tagBtn = document.createElement('button')

@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ingredients':
-                        let ti = recipe.ingredients.filter((u) => {
+                        var ti = recipe.ingredients.filter((u) => {
                             let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ustensils':
-                        let tu = recipe.ustensils.filter((u) => {
+                        var tu = recipe.ustensils.filter((u) => {
                             let result = u.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ingredients':
-                        let ti = recipe.ingredients.filter((u) => {
+                        var ti = recipe.ingredients.filter((u) => {
                             let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ustensils':
-                        let tu = recipe.ustensils.filter((u) => {
+                        var tu = recipe.ustensils.filter((u) => {
                             let result = u.toLowerCase().match(tag.value.toLowerCase())
 
                             if (result && result.length > 0) {
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             break
 
                         case 'ingredients':
-                            let ti = recipe.ingredients.filter((u) => {
+                            var ti = recipe.ingredients.filter((u) => {
                                 let result = u.ingredient.toLowerCase().match(tag.textContent.toLowerCase())
 
                                 if (result && result.length > 0) {
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             break
 
                         case 'ustensils':
-                            let tu = recipe.ustensils.filter((u) => {
+                            var tu = recipe.ustensils.filter((u) => {
                                 let result = u.toLowerCase().match(tag.textContent.toLowerCase())
 
                                 if (result && result.length > 0) {
@@ -403,10 +403,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const recipeCardDOM = recipeModel.getRecipesCardDOM(); // Appel de la fonction getUser qui va générer les différents photographes
             recipesSection.appendChild(recipeCardDOM);
         });
-    };
+    }
 
     function recipesFactory(data) {
-        const { id, name, servings, ingredients, time, description, appliance, ustencils } = data;
+        const { name, ingredients, time, description } = data;
 
         let displayIngredients = "";
 

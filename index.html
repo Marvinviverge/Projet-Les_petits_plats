@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -21,7 +21,7 @@
     <div class="container mt-5">
         <header>
             <div class="text-center">
-                <img src="/assets/logo/logo.png" class="img-responsive" alt="Logo du site web Les Petits Plats" />
+                <img src="/assets/logo/logo.png" class="img-responsive" alt="Logo du site web Les Petits Plats">
             </div>
         </header>
 
@@ -42,46 +42,51 @@
             <div class="input-group mb-3 dropdown-container dropdown-container-ingredients">
                 <div class="input-container">
                     <input id="searchIngredients" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Ingredients" placeholder-closed="Ingredients"
-                        placeholder-opened="Rechercher un ingrédient" placeholder="Ingredients">
+                        aria-label="Text input with dropdown button" name="Ingredients"
+                        data-placeholder-closed="Ingredients" data-placeholder-opened="Rechercher un ingrédient"
+                        placeholder="Ingredients">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownIngredients" typeFilter="ingredients" class="dropdown-menu not-active">
+                <ul id="dropdownIngredients" data-typeFilter="ingredients" class="dropdown-menu not-active">
                 </ul>
             </div>
 
             <div class="input-group mb-3 dropdown-container dropdown-container-appliances">
                 <div class="input-container">
                     <input id="searchAppliance" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Appareils" placeholder-closed="Appareils"
-                        placeholder-opened="Rechercher un appareil" placeholder="Appareils">
+                        aria-label="Text input with dropdown button" name="Appareils"
+                        data-placeholder-closed="Appareils" data-placeholder-opened="Rechercher un appareil"
+                        placeholder="Appareils">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownAppliance" typeFilter="appliance" class="dropdown-menu dropdown-menu-end not-active">
+                <ul id="dropdownAppliance" data-typeFilter="appliance"
+                    class="dropdown-menu dropdown-menu-end not-active">
                 </ul>
             </div>
 
             <div class="input-group mb-3 dropdown-container dropdown-container-ustensils">
                 <div class="input-container">
                     <input id="searchUstensils" type="text" class="form-control dropdown-input"
-                        aria-label="Text input with dropdown button" name="Ustensiles" placeholder-closed="Ustensiles"
-                        placeholder-opened="Rechercher un ustensile" placeholder="Ustensiles">
+                        aria-label="Text input with dropdown button" name="Ustensiles"
+                        data-placeholder-closed="Ustensiles" data-placeholder-opened="Rechercher un ustensile"
+                        placeholder="Ustensiles">
                     <div class="icon icon-container">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <ul id="dropdownUstensils" typeFilter="ustensils" class="dropdown-menu dropdown-menu-end not-active">
+                <ul id="dropdownUstensils" data-typeFilter="ustensils"
+                    class="dropdown-menu dropdown-menu-end not-active">
+                </ul>
             </div>
         </div>
 
         <div id="noMatch" class="not-active">
             <p>Il n'y a aucune recette correspondant à votre recherche.</p>
         </div>
-
         <div class="row" id="recipes-container">
         </div>
     </div>

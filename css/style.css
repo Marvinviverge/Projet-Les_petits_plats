@@ -270,7 +270,7 @@ p {
 }
 
 .isRotate {
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 
 fa-chevron-down {

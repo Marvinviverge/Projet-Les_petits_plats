@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ingredients':
-                        let ti = [];
+                        var ti = [];
                         for (const u of recipe.ingredients) {
                             let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase());
 
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ustensils':
-                        let tu = [];
+                        var tu = [];
                         for (const u of recipe.ustensils) {
                             let result = u.toLowerCase().match(tag.value.toLowerCase());
 
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ingredients':
-                        let ti = []
+                        var ti = []
                         for (const u of recipe.ingredients) {
                             let result = u.ingredient.toLowerCase().match(tag.value.toLowerCase())
 
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         break;
 
                     case 'ustensils':
-                        let tu = []
+                        var tu = []
                         for (const u of recipe.ustensils) {
                             let result = u.toLowerCase().match(tag.value.toLowerCase())
 
@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             break;
 
                         case 'ingredients':
-                            let ingredientsMatch = [];
+                            var ingredientsMatch = [];
 
                             for (const ingredient of recipe.ingredients) {
                                 if (ingredient.ingredient.toLowerCase().match(tag.textContent.toLowerCase())) {
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             break;
 
                         case 'ustensils':
-                            let ustensilsMatch = [];
+                            var ustensilsMatch = [];
 
                             for (const ustensil of recipe.ustensils) {
                                 if (ustensil.toLowerCase().match(tag.textContent.toLowerCase())) {
@@ -459,10 +459,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const recipeCardDOM = recipeModel.getRecipesCardDOM(); // Appel de la fonction getUser qui va générer les différents photographes
             recipesSection.appendChild(recipeCardDOM);
         });
-    };
+    }
 
     function recipesFactory(data) {
-        const { id, name, servings, ingredients, time, description, appliance, ustencils } = data;
+        const { name, ingredients, time, description } = data;
 
         let displayIngredients = "";
 

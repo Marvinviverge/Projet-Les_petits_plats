@@ -1,8 +1,42 @@
+/* LES DIFFERENTES SECTIONS
+
+    1- GENERAL SECTION
+    2- SEARCH BAR SECTION
+    3- TAG SECTION
+    4- CARD SECTION
+    5- DROPDOWN SECTION
+
+*/
+
+/* 1- GENERAL SECTION */
 * {
     font-family: 'Lato', sans-serif;
 }
 
-/* SEARCH BAR SECTION*/
+#noMatch p {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px !important;
+    font-weight: 700;
+}
+
+li a {
+    color: white !important;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: inherit !important;
+}
+
+p {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.margin {
+    margin-bottom: 20px;
+}
+
+/* 2- SEARCH BAR SECTION */
 #searchRecipes {
     padding-left: 30px;
 }
@@ -31,7 +65,7 @@
     box-shadow: none;
 }
 
-/* TAG SECTION */
+/* 3- TAG SECTION */
 #tag-container {
     margin-top: 25px;
     min-height: 50px;
@@ -85,7 +119,7 @@
     background-color: #68D9A4 !important;
 }
 
-/* CARD SECTION */
+/* 4- CARD SECTION */
 
 .card-background {
     height: 50%;
@@ -142,16 +176,7 @@
     scrollbar-width: thin;
 }
 
-p {
-    font-size: 12px;
-    font-family: 'Roboto', sans-serif !important;
-}
-
-.margin {
-    margin-bottom: 20px;
-}
-
-/*Section des dropdown*/
+/* DROPDOWN SECTION */
 
 .dropdown-container {
     width: 15% !important;
@@ -313,21 +338,7 @@ fa-chevron-down {
     filter: brightness(90%);
 }
 
-li a {
-    color: white !important;
-    font-size: 16px;
-    font-weight: 400;
-    white-space: inherit !important;
-}
-
 .input-container {
     display: flex;
     width: 100%;
-}
-
-#noMatch p {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 24px !important;
-    font-weight: 700;
 }

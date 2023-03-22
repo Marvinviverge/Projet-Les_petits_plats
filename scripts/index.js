@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     main(); // Appel de la fonction main.
 
+    // --- Fonction pour la recherche principale --- \\
     function searchBar(recipes) {
 
-        // --- Fonction pour la recherche principale --- \\
         searchRecipes.addEventListener('keyup', () => { // Evènement à la saisie de touches sur le clavier
 
             if (searchRecipes.value.length < 3) { // Si l'utilisateur saisie moins de trois caractères, on retourne l'affichage normal
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tagFilterSecond(recipes)
             displayAll(recipes)
 
+            // Affichage d'un message si la recherche ne donne aucune recette.
             let noRecipes = document.querySelector('#noMatch')
             if (newRecipes.length == 0) {
                 noRecipes.classList.remove('not-active')
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // --- Fonction pour l'affichage des dropdowns --- \\
     function displayDropdown(dropdown) {
 
         let buttn = dropdown.parentNode
@@ -54,10 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         btn.onclick = () => {
 
+            // Modification du style css des dropdown au clic. 
             iconContainer.classList.toggle('isRotate');
             dropdownContainer.classList.toggle('dropdown-container-opened');
             dropdownMenu.classList.toggle('not-active')
 
+            // Evènement pour effectuer une recherche dans la liste du dropdown
             dropdownInput.addEventListener('keyup', (e) => {
                 if (e.target.value.length > 0) {
 
@@ -78,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             })
 
+            // Modification du style des placeholders.
             if (dropdownContainer.getAttribute('class').includes('opened')) {
                 dropdownInput.placeholder = dropdownInput.getAttribute('data-placeholder-opened');
             } else {
@@ -91,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // --- Fonction numéro une pour effectuer un tri des recettes en fonction des filtres déjà cliqués --- \\
     function tagFilterFirst(recipes) {
         newRecipes = []
 
@@ -142,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+    // --- Fonction numéro une pour effectuer un tri des recettes en fonction des filtres déjà cliqués --- \\
     function tagFilterSecond(recipes) {
         newRecipes = []
 
@@ -204,12 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // --- Fonction qui fait appel à toutes les fonctions d'affichage --- \\
     function displayAll(recipes) {
         displayData();
         displayItems();
         tagClicked(recipes);
     }
 
+    // --- Fonction pour créer l'affichage des listes d'items dans chacun des dropdowns --- \\
     function displayItems() {
         let dropdownIngredients = document.getElementById('dropdownIngredients')
         dropdownIngredients.innerHTML = '';
@@ -326,6 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // --- Fonction pour gérer les évènements liés aux clics sur les différents items des dropdowns, que la création des tags sous la barre de recherche, ainsi que le filtrage des recettes --- \\
     function tagClicked(recipes) {
 
         let item = document.querySelectorAll('.dropdown-item')
@@ -335,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tag.addEventListener('click', (e) => {
                 let focus = e.target.parentNode.parentNode.getAttribute('data-typeFilter')
                 allTags.push({ type: focus, value: tag.textContent })
-
+                // Création du DOM HTML pour les tags
                 let tagBtn = document.createElement('button')
 
                 tagBtn.classList.add('btn', 'btn-primary', 'tag')
@@ -360,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 let filteredRecipes = [];
-
+                // Boucle sur les recettes afin de retenir celles qui correspondent aux tags.
                 for (const recipe of newRecipes) {
                     let isMatch = false;
 
@@ -405,15 +415,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     if (isMatch) {
-                        filteredRecipes.push(recipe);
+                        filteredRecipes.push(recipe); // On push dans le tableau les recettes qui correspondent aux tags.
                     }
                 }
 
-                newRecipes = filteredRecipes;
+                newRecipes = filteredRecipes; //La variable globale newRecipes prends la valeur du tableau créé pour la boucle afin d'afficher les recettes qui correspondent aux tags.
 
 
                 displayAll(recipes)
 
+                // Ajout d'un évènement au clic sur les tags sous la barre de recherche
                 tagBtn.addEventListener('click', () => {
 
                     let updatedAllTags = [];
@@ -424,6 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     allTags = updatedAllTags;
 
+                    // Prise en compte de l'input de la barre de recherche afin d'effectuer un nouveau tri à chaque tag cliqué et retiré
                     if (searchRecipes.value.length < 3) {
                         tagFilterFirst(recipes)
                         displayAll(recipes)
@@ -440,6 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // --- Fonction pour recevoir les données du JSON --- \\
     function getApi() {
         return fetch('http://localhost:5500/api/recipes.json')
             .then(function (response) {
@@ -450,17 +463,19 @@ document.addEventListener("DOMContentLoaded", function () {
             })
     }
 
+    // --- Fonction qui génère l'affichage des recettes --- \\
     function displayData() {
         const recipesSection = document.getElementById("recipes-container");
         recipesSection.innerHTML = '';
 
         newRecipes.forEach((recipe) => {
-            const recipeModel = recipesFactory(recipe); // Appel de la fonction photographerFactory avec en paramètre les informations des photographes.
-            const recipeCardDOM = recipeModel.getRecipesCardDOM(); // Appel de la fonction getUser qui va générer les différents photographes
+            const recipeModel = recipesFactory(recipe); // Appel de la fonction recipesFactory
+            const recipeCardDOM = recipeModel.getRecipesCardDOM(); // Appel de la fonction getRecipesCardDOM qui va générer les différentes recettes
             recipesSection.appendChild(recipeCardDOM);
         });
     }
 
+    // --- Fonction utilisant le patern Factory Function pour la création du DOM de chaque recette --- \\
     function recipesFactory(data) {
         const { name, ingredients, time, description } = data;
 
@@ -480,11 +495,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
 
-        /**
-            * Initialisation de la fonction getUserCardDOM permettant de créer dans le DOM un article contenant les informations relatives à chaque photographe, cette fonction est utilisée pour générer les différents photographes sur la page d'accueil. 
-            * @function [<getUserCardDOM>]
-            * @returns {HTMLArticleElement} Retourne un élément HTML "article".
-        */
+        //--- Initialisation de la fonction getUserCardDOM permettant de créer dans le DOM une div contenant les informations relatives à chaque recette --- \\
+
         function getRecipesCardDOM() {
             const rowCol = document.createElement('div');
             rowCol.classList.add('col-md-4');

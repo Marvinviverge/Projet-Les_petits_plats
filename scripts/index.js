@@ -30,14 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             tagFilterSecond(recipes)
             displayAll(recipes)
 
-            // Affichage d'un message si la recherche ne donne aucune recette.
-            let noRecipes = document.querySelector('#noMatch')
-            if (newRecipes.length == 0) {
-                noRecipes.classList.remove('not-active')
-            } else {
-                noRecipes.classList.add('not-active')
-            }
-
         })
 
     }
@@ -216,6 +208,14 @@ document.addEventListener("DOMContentLoaded", function () {
         displayData();
         displayItems();
         tagClicked(recipes);
+
+        // Affichage d'un message si la recherche ne donne aucune recette.
+        let noRecipes = document.querySelector('#noMatch')
+        if (newRecipes.length == 0) {
+            noRecipes.classList.remove('not-active')
+        } else {
+            noRecipes.classList.add('not-active')
+        }
     }
 
     // --- Fonction pour créer l'affichage des listes d'items dans chacun des dropdowns --- \\
